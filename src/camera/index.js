@@ -55,6 +55,11 @@ export default {
       type: Number,
       default: 10,
     },
+
+    attachControl: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
@@ -141,7 +146,9 @@ export default {
   async onScene({ scene }) {
     this.canvas = scene.getEngine().getRenderingCanvas();
     this.create();
-    // this.attachControl();
+    if (this.attachControl) {
+      this.attachControl();
+    }
     return this.$entity;
   },
 
