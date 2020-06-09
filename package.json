@@ -29,15 +29,15 @@
   ],
   "license": "MIT",
   "scripts": {
-    "b": "CONTEXT=$(pwd) npm explore begin-build -- npm run",
+    "b": "cross-env CONTEXT=$(pwd) npm explore begin-build -- npm run",
     "start": "npm run b start:client",
     "build": "rm -rf docs && npm run b build",
-    "dist:rollup": "NODE_OPTIONS=--max_old_space_size=8192 rollup --config",
+    "dist:rollup": "cross-env NODE_OPTIONS=--max_old_space_size=8192 rollup --config",
     "dist:uglify": "uglifyjs dist/umd.js -c -m -o dist/umd.min.js",
-    "dist": "BABEL_ENV=dist rm -rf lib dist && npm run dist:rollup && npm run dist:uglify",
-    "test": "BABEL_ENV=test ava src/**/test.js",
-    "test:watch": "BABEL_ENV=test npm run test -- -w",
-    "test:tap": "BABEL_ENV=test npm run test -- --tap"
+    "dist": "cross-env BABEL_ENV=dist rm -rf lib dist && npm run dist:rollup && npm run dist:uglify",
+    "test": "cross-env BABEL_ENV=test ava src/**/test.js",
+    "test:watch": "cross-env BABEL_ENV=test npm run test -- -w",
+    "test:tap": "cross-env BABEL_ENV=test npm run test -- --tap"
   },
   "peerDependencies": {
     "vue": "^2.2.0",
@@ -81,5 +81,8 @@
     "require": [
       "@babel/register"
     ]
+  },
+  "dependencies": {
+    "cross-env": "^7.0.2"
   }
 }
