@@ -141,7 +141,7 @@ export default {
   async onScene({ scene }) {
     this.canvas = scene.getEngine().getRenderingCanvas();
     this.create();
-    this.attachControl();
+    // this.attachControl();
     return this.$entity;
   },
 
